@@ -11,11 +11,11 @@ public class Main {
                 case "exit":
                     System.exit(0);
                     break;
-                case String a when a.contains("echo"):
+                case String a when a.startsWith("echo"):
                     String b=a.substring(5);
                     System.out.println(b);
                     break; 
-                case String a when a.contains("type"):
+                case String a when a.startsWith("type"):
                     String x=a.substring(5);
                     for(int i=0;i<types.length;i++){
                         if(x.equals(types[i])){
