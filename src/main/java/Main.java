@@ -7,10 +7,17 @@ public class Main {
             System.out.print("$ ");
             Scanner sc=new Scanner(System.in);
             String com= sc.nextLine();
-            if(!com.equals("exit")){
-                System.out.println(com.concat(": command not found"));
-            }else{
-                System.exit(0);
+            switch (com) {
+                case "exit":
+                    System.exit(0);
+                    break;
+                case String a when a.contains("echo"):
+                    String b=a.substring(4);
+                    System.out.println(b.concat(" /n"));
+                    break; 
+                default:
+                    System.out.println(com.concat(": command not found"));
+                    break;
             }
         }while(true);
         
