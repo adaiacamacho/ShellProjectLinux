@@ -1,3 +1,5 @@
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +11,7 @@ public class Main {
             String com= sc.nextLine();
             switch (com) {
                 case "exit":
+                    sc.close();
                     System.exit(0);
                     break;
                 case String a when a.startsWith("echo"):
@@ -24,6 +27,16 @@ public class Main {
                                 break typeCase;
                             }
                         }
+                        String env= System.getenv("PATH");
+                        String[] paths = env != null ? env.split(File.pathSeparator) : new String[0];
+                        for (String path : paths) {
+                            File dirNatural=new File(path);
+                            File buscarDir=new File(dirNatural,x);
+                            if(buscarDir.exists() && buscarDir.canExecute()){
+                                System.out.println(x.concat(" is " + buscarDir));
+                                break typeCase;
+                            }
+                        }   
                         System.out.println(x.concat(": not found"));
                     }
                     break;
@@ -32,5 +45,6 @@ public class Main {
                     break;
             }
         }while(true);
+        
     } 
 }
