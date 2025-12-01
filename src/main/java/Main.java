@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        //TODO: Uncomment the code below to pass the first stage
+        String[] types= {"echo","exit","type"};
         do{
             System.out.print("$ ");
             Scanner sc=new Scanner(System.in);
@@ -15,11 +15,25 @@ public class Main {
                     String b=a.substring(5);
                     System.out.println(b);
                     break; 
+                case String a when a.contains("type"):
+                    String x=a.substring(5);
+                    for(int i=0;i<types.length;i++){
+                        if(x.equals(types[i])){
+                            System.out.println(types[i].concat(" is a shel builtin"));
+                            break;
+                        }
+                    }
+                    notfound(x);
+                    break;
                 default:
-                    System.out.println(com.concat(": command not found"));
+                    notfound(com);
                     break;
             }
         }while(true);
         
+       
+    } 
+    public static void notfound(String command){
+            System.out.println(command.concat(": command not found"));
     }
 }
