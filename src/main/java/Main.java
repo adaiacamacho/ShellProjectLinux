@@ -13,7 +13,7 @@ public class Main {
                     break;
                 case String a when a.contains("echo"):
                     String b=a.substring(4);
-                    System.out.println(b.concat(" /n"));
+                    System.out.println(b.concat("\n"));
                     break; 
                 default:
                     System.out.println(com.concat(": command not found"));
