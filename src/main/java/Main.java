@@ -19,7 +19,7 @@ public class Main {
                     String x=a.substring(5);
                     for(int i=0;i<types.length;i++){
                         if(x.equals(types[i])){
-                            System.out.println(x.concat(" is a shel builtin"));
+                            System.out.println(x.concat(" is a shell builtin"));
                             break;
                         }
                     }
