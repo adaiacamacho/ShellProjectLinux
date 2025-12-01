@@ -47,12 +47,10 @@ public class Main {
                 default:
                     tryExec:{
                         String exec="";
-                        String argmts="";
                         for(int i=0;i<10;i++){
                             String ch=com.valueOf(i);
                             if (ch.equals(" ")) {
                                 exec=com.substring(0,i); 
-                                argmts=com.substring(i);
                             }
                         }
                         String env= System.getenv("PATH");
@@ -61,7 +59,7 @@ public class Main {
                             File dirNatural=new File(path);
                             File buscarDir=new File(dirNatural,exec);
                             if(buscarDir.exists() && buscarDir.canExecute()){
-                               ProcessBuilder pb = new ProcessBuilder(Arrays.asList(argmts.split(" ")));
+                               ProcessBuilder pb = new ProcessBuilder(Arrays.asList(com.split(" ")));
                                pb.inheritIO();
                                Process p = pb.start();
                                p.waitFor();
