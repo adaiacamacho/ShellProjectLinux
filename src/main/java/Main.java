@@ -1,6 +1,10 @@
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Executor;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -41,7 +45,31 @@ public class Main {
                     }
                     break;
                 default:
-                    System.out.println(com.concat(": command not found"));
+                    tryExec:{
+                        String exec="";
+                        String argmts="";
+                        for(int i=0;i<10;i++){
+                            String ch=com.valueOf(i);
+                            if (ch.equals(" ")) {
+                                exec=com.substring(0,i); 
+                                argmts=com.substring(i);
+                            }
+                        }
+                        String env= System.getenv("PATH");
+                        String[] paths = env != null ? env.split(File.pathSeparator) : new String[0];
+                        for (String path : paths) {
+                            File dirNatural=new File(path);
+                            File buscarDir=new File(dirNatural,exec);
+                            if(buscarDir.exists() && buscarDir.canExecute()){
+                               ProcessBuilder pb = new ProcessBuilder(Arrays.asList(argmts.split(" ")));
+                               pb.inheritIO();
+                               Process p = pb.start();
+                               p.waitFor();
+                               break tryExec;
+                            }
+                        }   
+                        System.out.println(com.concat(": command not found"));
+                    }
                     break;
             }
         }while(true);
