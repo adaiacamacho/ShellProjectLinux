@@ -9,33 +9,28 @@ public class Main {
             String com= sc.nextLine();
             switch (com) {
                 case "exit":
-                System.exit(0);
-                break;
+                    System.exit(0);
+                    break;
                 case String a when a.startsWith("echo"):
-                String b=a.substring(5);
-                System.out.println(b);
-                break; 
+                    String b=a.substring(5);
+                    System.out.println(b);
+                    break; 
                 case String a when a.startsWith("type"):
-                String x=a.substring(5);
-                typeCase: {
-                    for(int i=0;i<types.length;i++){
-                        if(x.equals(types[i])){
-                            System.out.println(x.concat(" is a shell builtin"));
-                            break typeCase;
+                    String x=a.substring(5);
+                    typeCase: {
+                        for(int i=0;i<types.length;i++){
+                            if(x.equals(types[i])){
+                                System.out.println(x.concat(" is a shell builtin"));
+                                break typeCase;
+                            }
                         }
+                        System.out.println(x.concat(": not found"));
                     }
-                    notfound(x);
-                }
-                break;
+                    break;
                 default:
-                notfound(com);
-                break;
+                    System.out.println(com.concat(": command not found"));
+                    break;
             }
         }while(true);
-        
-        
     } 
-    public static void notfound(String command){
-        System.out.println(command.concat(": command not found"));
-    }
 }
