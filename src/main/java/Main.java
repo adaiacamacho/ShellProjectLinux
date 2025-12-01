@@ -12,7 +12,7 @@ public class Main {
                     System.exit(0);
                     break;
                 case String a when a.contains("echo"):
-                    String b=a.substring(4);
+                    String b=a.substring(5);
                     System.out.println(b.concat("\n"));
                     break; 
                 default:
