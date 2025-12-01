@@ -7,7 +7,7 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         String com= sc.nextLine();
         if(!com.equals(" ")){
-            System.out.println(com.concat(" command not found"));
+            System.out.println(com.concat(": command not found"));
         }
     }
 }
