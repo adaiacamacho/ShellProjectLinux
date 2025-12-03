@@ -1,10 +1,14 @@
 import java.io.File;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String[] types= {"echo","exit","type","pwd"};
+        String[] types= {"echo","exit","type","pwd","cd"};
         Scanner sc=new Scanner(System.in);
         String env= System.getenv("PATH");
         do{
@@ -43,6 +47,22 @@ public class Main {
                 case String a when a.startsWith("pwd"):
                 System.out.println(System.getProperty("user.dir"));
                 break;
+                case String a when a.startsWith("cd"):
+                    switch (a.charAt(4)) {
+                        case '/':
+                            String objetivo=a.substring(4);
+                            File f=new File(objetivo);
+                            if(f.exists()){
+                                System.setProperty("user.dir", objetivo);
+                            }else{
+                                System.out.println(new String("cd: " + objetivo+": No such file or directory"));
+                            }
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                    break;
                 default:
                 tryExec:{
                     try {     
@@ -58,11 +78,12 @@ public class Main {
                                 p.waitFor();
                                 break tryExec;
                             }
-                        }  
-                        System.out.println(com.concat(": command not found"));
+                        }    
                     } catch (Exception e) {
                         System.out.println(com.concat(": command not found"));
-                    } 
+                    } finally{
+                        System.out.println(com.concat(": command not found"));
+                    }
                     
                 }
                 break;
