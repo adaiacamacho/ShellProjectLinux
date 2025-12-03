@@ -79,11 +79,10 @@ public class Main {
                                 break tryExec;
                             }
                         }    
+                        System.out.println(com.concat(": command not found"));
                     } catch (Exception e) {
                         System.out.println(com.concat(": command not found"));
-                    } finally{
-                        System.out.println(com.concat(": command not found"));
-                    }
+                    } 
                     
                 }
                 break;
