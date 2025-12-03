@@ -1,17 +1,14 @@
 import java.io.File;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.Executor;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String[] types= {"echo","exit","type"};
+        String[] types= {"echo","exit","type","pwd"};
+        Scanner sc=new Scanner(System.in);
+        String env= System.getenv("PATH");
         do{
             System.out.print("$ ");
-            Scanner sc=new Scanner(System.in);
             String com= sc.nextLine();
             switch (com) {
                 case "exit":
@@ -31,7 +28,6 @@ public class Main {
                             break typeCase;
                         }
                     }
-                    String env= System.getenv("PATH");
                     String[] paths = env != null ? env.split(File.pathSeparator) : new String[0];
                     for (String path : paths) {
                         File dirNatural=new File(path);
@@ -44,17 +40,13 @@ public class Main {
                     System.out.println(x.concat(": not found"));
                 }
                 break;
+                case String a when a.startsWith("pwd"):
+                System.out.println(System.getProperty("user.dir"));
+                break;
                 default:
                 tryExec:{
                     try {     
-                        String exec="";
-                        for(int i=0;i<10;i++){
-                            String ch=com.valueOf(i);
-                            if (ch.equals(" ")) {
-                                exec=com.substring(0,i); 
-                            }
-                        }
-                        String env= System.getenv("PATH");
+                        String exec=com.split(" ")[0];
                         String[] paths = env != null ? env.split(File.pathSeparator) : new String[0];
                         for (String path : paths) {
                             File dirNatural=new File(path);
