@@ -48,9 +48,9 @@ public class Main {
                 System.out.println(System.getProperty("user.dir"));
                 break;
                 case String a when a.startsWith("cd"):
-                    switch (a.charAt(4)) {
+                    switch (a.charAt(3)) {
                         case '/':
-                            String objetivo=a.substring(4);
+                            String objetivo=a.substring(3);
                             File f=new File(objetivo);
                             if(f.exists()){
                                 System.setProperty("user.dir", objetivo);
