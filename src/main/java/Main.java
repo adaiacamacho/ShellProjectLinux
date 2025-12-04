@@ -70,9 +70,9 @@ public class Main {
                                 for(String p:pasos){
                                     if(p.equals("..")){
                                         File act=new File(System.getProperty("user.dir"));
-                                        Path menos=act.toPath();
+                                        Path menos= act.toPath();
                                         Path nuevo=menos.subpath(0, menos.getNameCount()-1);
-                                        System.setProperty("user.dir", nuevo.toString());
+                                        System.setProperty("user.dir", new String("/"+nuevo.toString()));
                                     }else{
                                         String moveDown=System.getProperty("user.dir");
                                         System.setProperty("user.dir", new String(moveDown+"/"+p));
