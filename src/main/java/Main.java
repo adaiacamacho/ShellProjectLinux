@@ -80,6 +80,10 @@ public class Main {
                                 }
                             }
                             break;
+                        case '~':
+                            String home=System.getProperty("user.home");
+                            System.setProperty("user.dir", home);
+                            break;
                         default:
                             String ob3=a.substring(3);
                             File f1=new File(ob3);
