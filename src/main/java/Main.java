@@ -81,7 +81,10 @@ public class Main {
                             }
                             break;
                         case '~':
-                            String home=System.getProperty("user.home");
+                            String home=System.getenv("HOME");
+                            if(home.isEmpty()){
+                                home=System.getProperty("user.home");
+                            }
                             System.setProperty("user.dir", home);
                             break;
                         default:
