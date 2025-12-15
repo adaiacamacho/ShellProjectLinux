@@ -22,12 +22,16 @@ public class Main {
                 System.exit(0);
                 break;
                 case String a when a.startsWith("echo"):
-                    if(a.contains(">")){
+                    String b=a.substring(5);
+                    if(b.contains("'")){
+                        b=b.replaceAll("'", "");
+                    }
+                    if(b.contains(">")){
                         String[] partes= new String[]{};
-                         if(a.contains("1>")){
-                            partes=a.split("1>");
+                         if(b.contains("1>")){
+                            partes=b.split("1>");
                         }else{
-                            partes=a.split(">");
+                            partes=b.split(">");
                         }
                         String redir=partes[1].strip();
                         ProcessBuilder pb = new ProcessBuilder(partes[0].split(" "));
@@ -36,7 +40,6 @@ public class Main {
                         pb.start().waitFor();
                         break;
                     }
-                String b=a.substring(5);
                 System.out.println(b);         
                 break; 
                 case String a when a.startsWith("type"):
