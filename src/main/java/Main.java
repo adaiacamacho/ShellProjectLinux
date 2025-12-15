@@ -23,9 +23,6 @@ public class Main {
                 break;
                 case String a when a.startsWith("echo"):
                     String b=a.substring(5);
-                    if(b.contains("'")){
-                        b=b.replaceAll("'", "");
-                    }
                     if(b.contains(">")){
                         String[] partes= new String[]{};
                          if(b.contains("1>")){
@@ -34,7 +31,7 @@ public class Main {
                             partes=b.split(">");
                         }
                         String redir=partes[1].strip();
-                        ProcessBuilder pb = new ProcessBuilder(partes[0].split(" "));
+                        ProcessBuilder pb = new ProcessBuilder(partes[0].replaceAll("'", "").split(" "));
                         pb.redirectOutput(new File(redir));
                         pb.redirectError(ProcessBuilder.Redirect.INHERIT);
                         pb.start().waitFor();
